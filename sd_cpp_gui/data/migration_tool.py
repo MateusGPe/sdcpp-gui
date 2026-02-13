@@ -384,7 +384,7 @@ class MigrationTool:
 if __name__ == "__main__":
     setup_logging()
 
-    root = tk.Tk()
+    root = tk.Toplevel()
 
     style = ttk.Style(theme="darkly")
 

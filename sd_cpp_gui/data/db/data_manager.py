@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
     def main_gui() -> None:
         """Runs the test GUI."""
-        root = tk.Tk()
+        root = tk.Toplevel()
         root.withdraw()  # Hide the main window
         root.title("Data Manager")
 

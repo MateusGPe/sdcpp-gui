@@ -97,25 +97,27 @@ class AppCoordinator(ttk.Window):
             container.init_execution_manager(cli_runner, server_runner)
         )
         self.command_controller = CommandController(self.cmd_loader)
+        themes.register_themes()
         self.themes = list(themes.USER_THEMES.keys())
         saved_theme = self.settings.get("theme", default=self.themes[0])
+        self.theme_id = 0
 
-        try:
-            themename = self.themes[self.themes.index(saved_theme)]
-            super().__init__(themename=themename)
-            logger.info(f"Successfully applied theme: {themename}")
-        except Exception as e:
-            logger.warning(
-                "Failed to apply theme '%s': %s. "
-                "Falling back to default theme.",
-                saved_theme,
-                e,
-            )
+        # Initialize with a safe default to prevent TclError on fallback (double init)
+        super().__init__(themename="cosmo")
+
+        if saved_theme and saved_theme != "cosmo":
             try:
-                super().__init__(themename="cosmo")
-            except Exception as e2:
-                logger.error(f"Failed to apply fallback theme: {e2}")
-                super().__init__(themename="litera")
+                if saved_theme in self.themes:
+                    self.style.theme_use(saved_theme)
+                    self.theme_id = self.themes.index(saved_theme)
+
+                    logger.info(f"Successfully applied theme: {saved_theme}")
+            except Exception as e:
+                logger.warning(
+                    "Failed to apply theme '%s': %s. Falling back to default.",
+                    saved_theme,
+                    e,
+                )
 
         self.ui_refs: view_builder.UIReferences
         self.sidebar_expanded = False

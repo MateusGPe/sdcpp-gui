@@ -4,7 +4,7 @@ from sd_cpp_gui.infrastructure.logger import get_logger
 
 logger = get_logger(__name__)
 
-user.USER_THEMES = {
+_THEME_DEFINITIONS = {
     "sdcpp": {
         "type": "light",
         "colors": {
@@ -216,5 +216,9 @@ user.USER_THEMES = {
         },
     },
 }
-USER_THEMES = user.USER_THEMES
-logger.info(f"Registered {len(user.USER_THEMES)} custom themes.")
+
+USER_THEMES = _THEME_DEFINITIONS
+
+def register_themes() -> None:
+    user.USER_THEMES.update(_THEME_DEFINITIONS)
+    logger.info(f"Registered {len(_THEME_DEFINITIONS)} custom themes.")

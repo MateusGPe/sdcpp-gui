@@ -60,7 +60,7 @@ def main() -> None:
         import tkinter as tk
         from tkinter import messagebox
 
-        root = tk.Tk()
+        root = tk.Toplevel()
         root.withdraw()
         messagebox.showerror(
             "Application Error", f"An unexpected error occurred: {e}"
