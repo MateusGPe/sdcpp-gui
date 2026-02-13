@@ -2,6 +2,8 @@
 
 A modular and robust Graphical User Interface for Stable Diffusion workflows, designed with extensibility and library management in mind.
 
+![Sample Screenshot](images/sample.png)
+
 ## ⚠️ Disclaimer & Project Status
 
 This project is currently a **personal hobby** endeavor and serves primarily as a **technical playground**. It is designed as a sandbox for experimenting with modular architecture, dependency injection, and Tkinter UI patterns within the context of Stable Diffusion.

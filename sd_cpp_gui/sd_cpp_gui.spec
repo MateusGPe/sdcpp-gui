@@ -71,7 +71,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name="SD-CPP-GUI",
+    name="sd_cpp_gui",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
