@@ -6,7 +6,7 @@ if __name__ == "__main__":
     try:
         PyInstaller.__main__.run(
             [
-                "sd-cpp-gui.spec",
+                "./sd_cpp_gui/sd_cpp_gui.spec",
                 "--noconfirm",
                 "--clean",
             ]
