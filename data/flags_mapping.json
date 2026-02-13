@@ -1,0 +1,407 @@
+{
+  "_meta": {
+    "version": "master-438-298b110-audit-2025",
+    "description": "Rules for mapping CLI flags to SD-Server API based on exact C++ source code analysis."
+  },
+  "flags": {
+    "--model": {
+      "type": "startup_arg"
+    },
+    "-m": {
+      "type": "startup_arg"
+    },
+    "--clip_l": {
+      "type": "startup_arg"
+    },
+    "--clip_g": {
+      "type": "startup_arg"
+    },
+    "--clip_vision": {
+      "type": "startup_arg"
+    },
+    "--t5xxl": {
+      "type": "startup_arg"
+    },
+    "--llm": {
+      "type": "startup_arg"
+    },
+    "--llm_vision": {
+      "type": "startup_arg"
+    },
+    "--diffusion-model": {
+      "type": "startup_arg"
+    },
+    "--high-noise-diffusion-model": {
+      "type": "startup_arg"
+    },
+    "--vae": {
+      "type": "startup_arg"
+    },
+    "--taesd": {
+      "type": "startup_arg"
+    },
+    "--tae": {
+      "type": "startup_arg"
+    },
+    "--control-net": {
+      "type": "startup_arg"
+    },
+    "--embd-dir": {
+      "type": "startup_arg"
+    },
+    "--lora-model-dir": {
+      "type": "startup_arg"
+    },
+    "--photo-maker": {
+      "type": "startup_arg"
+    },
+    "--upscale-model": {
+      "type": "startup_arg"
+    },
+    "--tensor-type-rules": {
+      "type": "startup_arg"
+    },
+    "-t": {
+      "type": "startup_arg"
+    },
+    "--threads": {
+      "type": "startup_arg"
+    },
+    "--chroma-t5-mask-pad": {
+      "type": "startup_arg"
+    },
+    "--vae-tile-overlap": {
+      "type": "startup_arg"
+    },
+    "--flow-shift": {
+      "type": "startup_arg"
+    },
+    "--vae-tiling": {
+      "type": "startup_arg"
+    },
+    "--force-sdxl-vae-conv-scale": {
+      "type": "startup_arg"
+    },
+    "--offload-to-cpu": {
+      "type": "startup_arg"
+    },
+    "--control-net-cpu": {
+      "type": "startup_arg"
+    },
+    "--clip-on-cpu": {
+      "type": "startup_arg"
+    },
+    "--vae-on-cpu": {
+      "type": "startup_arg"
+    },
+    "--diffusion-fa": {
+      "type": "startup_arg"
+    },
+    "--diffusion-conv-direct": {
+      "type": "startup_arg"
+    },
+    "--vae-conv-direct": {
+      "type": "startup_arg"
+    },
+    "--circular": {
+      "type": "startup_arg"
+    },
+    "--circularx": {
+      "type": "startup_arg"
+    },
+    "--circulary": {
+      "type": "startup_arg"
+    },
+    "--chroma-disable-dit-mask": {
+      "type": "startup_arg"
+    },
+    "--chroma-enable-t5-mask": {
+      "type": "startup_arg"
+    },
+    "--type": {
+      "type": "startup_arg"
+    },
+    "--rng": {
+      "type": "startup_arg"
+    },
+    "--sampler-rng": {
+      "type": "startup_arg"
+    },
+    "--prediction": {
+      "type": "startup_arg"
+    },
+    "--lora-apply-mode": {
+      "type": "startup_arg"
+    },
+    "--vae-tile-size": {
+      "type": "startup_arg"
+    },
+    "--vae-relative-tile-size": {
+      "type": "startup_arg"
+    },
+    "--prompt": {
+      "type": "api_standard",
+      "key": "prompt"
+    },
+    "-p": {
+      "type": "api_standard",
+      "key": "prompt"
+    },
+    "-b": {
+      "type": "api_standard",
+      "key": "n"
+    },
+    "--batch-count": {
+      "type": "api_standard",
+      "key": "n"
+    },
+    "--width": {
+      "type": "api_standard",
+      "key": "width"
+    },
+    "-W": {
+      "type": "api_standard",
+      "key": "width"
+    },
+    "--height": {
+      "type": "api_standard",
+      "key": "height"
+    },
+    "-H": {
+      "type": "api_standard",
+      "key": "height"
+    },
+    "--negative-prompt": {
+      "type": "api_injected",
+      "key": "negative_prompt"
+    },
+    "-n": {
+      "type": "api_injected",
+      "key": "negative_prompt"
+    },
+    "--clip-skip": {
+      "type": "api_injected",
+      "key": "clip_skip"
+    },
+    "--video-frames": {
+      "type": "api_injected",
+      "key": "video_frames"
+    },
+    "--fps": {
+      "type": "api_injected",
+      "key": "fps"
+    },
+    "--upscale-repeats": {
+      "type": "api_injected",
+      "key": "upscale_repeats"
+    },
+    "--seed": {
+      "type": "api_injected",
+      "key": "seed"
+    },
+    "--strength": {
+      "type": "api_injected",
+      "key": "strength"
+    },
+    "--control-strength": {
+      "type": "api_injected",
+      "key": "control_strength"
+    },
+    "--pm-style-strength": {
+      "type": "api_injected",
+      "key": "pm_style_strength"
+    },
+    "--moe-boundary": {
+      "type": "api_injected",
+      "key": "moe_boundary"
+    },
+    "--vace-strength": {
+      "type": "api_injected",
+      "key": "vace_strength"
+    },
+    "--disable-auto-resize-ref-image": {
+      "type": "api_injected",
+      "key": "auto_resize_ref_image",
+      "note": "Inverted logic"
+    },
+    "--increase-ref-index": {
+      "type": "api_injected",
+      "key": "increase_ref_index"
+    },
+    "--skip-layers": {
+      "type": "api_injected",
+      "key": "skip_layers"
+    },
+    "--high-noise-skip-layers": {
+      "type": "api_injected",
+      "key": "high_noise_skip_layers"
+    },
+    "--cfg-scale": {
+      "type": "api_injected",
+      "key": "cfg_scale"
+    },
+    "--img-cfg-scale": {
+      "type": "api_injected",
+      "key": "img_cfg_scale"
+    },
+    "--guidance": {
+      "type": "api_injected",
+      "key": "guidance"
+    },
+    "--cache-mode": {
+      "type": "api_injected",
+      "key": "cache_mode"
+    },
+    "--cache-option": {
+      "type": "api_injected",
+      "key": "cache_option"
+    },
+    "--cache-preset": {
+      "type": "api_injected",
+      "key": "cache_preset"
+    },
+    "--scm-mask": {
+      "type": "api_injected",
+      "key": "scm_mask"
+    },
+    "--pm-id-embed-path": {
+      "type": "api_injected",
+      "key": "pm_id_embed_path"
+    },
+    "--steps": {
+      "type": "startup_arg"
+    },
+    "--high-noise-steps": {
+      "type": "startup_arg"
+    },
+    "--timestep-shift": {
+      "type": "startup_arg"
+    },
+    "--upscale-tile-size": {
+      "type": "startup_arg"
+    },
+    "--slg-scale": {
+      "type": "startup_arg"
+    },
+    "--skip-layer-start": {
+      "type": "startup_arg"
+    },
+    "--skip-layer-end": {
+      "type": "startup_arg"
+    },
+    "--eta": {
+      "type": "startup_arg"
+    },
+    "--high-noise-cfg-scale": {
+      "type": "startup_arg"
+    },
+    "--high-noise-img-cfg-scale": {
+      "type": "startup_arg"
+    },
+    "--high-noise-guidance": {
+      "type": "startup_arg"
+    },
+    "--high-noise-slg-scale": {
+      "type": "startup_arg"
+    },
+    "--high-noise-skip-layer-start": {
+      "type": "startup_arg"
+    },
+    "--high-noise-skip-layer-end": {
+      "type": "startup_arg"
+    },
+    "--high-noise-eta": {
+      "type": "startup_arg"
+    },
+    "--sampling-method": {
+      "type": "startup_arg"
+    },
+    "--high-noise-sampling-method": {
+      "type": "startup_arg"
+    },
+    "--scheduler": {
+      "type": "startup_arg"
+    },
+    "--sigmas": {
+      "type": "startup_arg"
+    },
+    "--scm-policy": {
+      "type": "startup_arg"
+    },
+    "--output": {
+      "type": "unsupported"
+    },
+    "--init-img": {
+      "type": "unsupported"
+    },
+    "-i": {
+      "type": "unsupported"
+    },
+    "--end-img": {
+      "type": "unsupported"
+    },
+    "--mask": {
+      "type": "unsupported"
+    },
+    "--control-image": {
+      "type": "unsupported"
+    },
+    "--control-video": {
+      "type": "unsupported"
+    },
+    "--ref-image": {
+      "type": "unsupported"
+    },
+    "--pm-id-images-dir": {
+      "type": "unsupported"
+    },
+    "--preview-path": {
+      "type": "unsupported"
+    },
+    "--preview-interval": {
+      "type": "unsupported"
+    },
+    "--canny": {
+      "type": "unsupported"
+    },
+    "--convert-name": {
+      "type": "unsupported"
+    },
+    "--taesd-preview-only": {
+      "type": "unsupported"
+    },
+    "--preview-noisy": {
+      "type": "unsupported"
+    },
+    "--preview": {
+      "type": "unsupported"
+    },
+    "--mode": {
+      "type": "unsupported"
+    },
+    "-l": {
+      "type": "startup_arg"
+    },
+    "--listen-ip": {
+      "type": "startup_arg"
+    },
+    "--listen-port": {
+      "type": "startup_arg"
+    },
+    "--verbose": {
+      "type": "startup_arg"
+    },
+    "-v": {
+      "type": "startup_arg"
+    },
+    "--color": {
+      "type": "unsupported"
+    },
+    "--version": {
+      "type": "unsupported"
+    },
+    "--help": {
+      "type": "unsupported"
+    }
+  }
+}

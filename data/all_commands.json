@@ -1,0 +1,644 @@
+[
+    {
+        "argument": "-m, --model",
+        "default_value": null,
+        "name": "Caminho do Modelo",
+        "description": "O arquivo principal da IA (.gguf ou .safetensors). É o 'cérebro' que define se a imagem será realista, anime, etc."
+    },
+    {
+        "argument": "--clip_l",
+        "default_value": null,
+        "name": "Codificador de Texto CLIP-L",
+        "description": "Arquivo auxiliar usado (principalmente no SDXL/SD3) para ajudar a IA a entender prompts simples."
+    },
+    {
+        "argument": "--clip_g",
+        "default_value": null,
+        "name": "Codificador de Texto CLIP-G",
+        "description": "Arquivo auxiliar para ajudar a IA a entender frases complexas e conceitos profundos."
+    },
+    {
+        "argument": "--clip_vision",
+        "default_value": null,
+        "name": "Codificador de Visão",
+        "description": "Permite que a IA 'enxergue' imagens (usado quando você envia uma imagem de referência)."
+    },
+    {
+        "argument": "--t5xxl",
+        "default_value": null,
+        "name": "Codificador de Texto T5",
+        "description": "O interpretador de texto mais poderoso (e pesado). Essencial para o modelo 'Flux' e 'SD3' entenderem o prompt perfeitamente."
+    },
+    {
+        "argument": "--qwen2vl",
+        "default_value": null,
+        "name": "Codificador Qwen2VL",
+        "description": "Um componente de texto/visão específico para modelos chineses ou arquiteturas baseadas em Qwen."
+    },
+    {
+        "argument": "--qwen2vl_vision",
+        "default_value": null,
+        "name": "Codificador Visual Qwen2VL",
+        "description": "A parte visual do modelo Qwen (usado para entender imagens de entrada)."
+    },
+    {
+        "argument": "--diffusion-model",
+        "default_value": null,
+        "name": "Modelo de Difusão (Separado)",
+        "description": "Uso avançado: carrega apenas a parte que gera o ruído, sem os codificadores de texto embutidos."
+    },
+    {
+        "argument": "--high-noise-diffusion-model",
+        "default_value": null,
+        "name": "Modelo de Alto Ruído",
+        "description": "Usado para o processo de 'Refiner' (SDXL). Um modelo especializado em criar a estrutura inicial da imagem."
+    },
+    {
+        "argument": "--vae",
+        "default_value": null,
+        "name": "Caminho do VAE",
+        "description": "O 'decodificador de cores'. Transforma os cálculos matemáticos da IA em uma imagem visível. Se suas imagens ficarem cinzas ou lavadas, você precisa disso."
+    },
+    {
+        "argument": "--taesd",
+        "default_value": null,
+        "name": "Tiny AutoEncoder (Rápido)",
+        "description": "Uma versão 'mini' do VAE. Gera imagens de baixa qualidade instantaneamente para pré-visualização."
+    },
+    {
+        "argument": "--control-net",
+        "default_value": null,
+        "name": "Modelo ControlNet",
+        "description": "Arquivo que força a IA a seguir uma pose ou contorno específico (ex: manter a pose de uma foto sua)."
+    },
+    {
+        "argument": "--embd-dir",
+        "default_value": null,
+        "name": "Diretório de Embeddings",
+        "description": "Pasta onde ficam os arquivos de Textual Inversion (pequenos arquivos que ensinam um conceito novo à IA)."
+    },
+    {
+        "argument": "--lora-model-dir",
+        "default_value": null,
+        "name": "Diretório de LoRAs",
+        "description": "Pasta onde ficam os LoRAs (arquivos que adicionam personagens, roupas ou estilos específicos ao modelo principal)."
+    },
+    {
+        "argument": "-i, --init-img",
+        "default_value": null,
+        "name": "Imagem Inicial",
+        "description": "Caminho para uma imagem base. A IA usará ela como referência para criar a nova (img2img)."
+    },
+    {
+        "argument": "--end-img",
+        "default_value": null,
+        "name": "Imagem Final",
+        "description": "Usado em técnicas de transição de vídeo, define onde a animação deve terminar."
+    },
+    {
+        "argument": "--tensor-type-rules",
+        "default_value": null,
+        "name": "Regras de Tipo de Tensor",
+        "description": "Avançado: Define manualmente a precisão (qualidade vs velocidade) de partes específicas do modelo."
+    },
+    {
+        "argument": "--photo-maker",
+        "default_value": null,
+        "name": "Modelo PhotoMaker",
+        "description": "Um modelo especializado em manter a consistência de rostos (face ID) em várias fotos."
+    },
+    {
+        "argument": "--pm-id-images-dir",
+        "default_value": null,
+        "name": "Diretório de IDs PhotoMaker",
+        "description": "Pasta com as fotos do rosto da pessoa que você quer clonar usando o PhotoMaker."
+    },
+    {
+        "argument": "--pm-id-embed-path",
+        "default_value": null,
+        "name": "Caminho Embed PhotoMaker V2",
+        "description": "Arquivo de dados pré-processados de um rosto para o PhotoMaker versão 2."
+    },
+    {
+        "argument": "--mask",
+        "default_value": null,
+        "name": "Máscara de Imagem",
+        "description": "Uma imagem em preto e branco que diz à IA onde ela pode desenhar e onde não deve mexer (Inpainting)."
+    },
+    {
+        "argument": "--control-image",
+        "default_value": null,
+        "name": "Imagem de Controle",
+        "description": "A imagem guia para o ControlNet (ex: o desenho de palito que define a pose)."
+    },
+    {
+        "argument": "--control-video",
+        "default_value": null,
+        "name": "Vídeo de Controle",
+        "description": "Uma pasta com quadros de vídeo para guiar a animação da IA."
+    },
+    {
+        "argument": "-o, --output",
+        "default_value": "./output.png",
+        "name": "Arquivo de Saída",
+        "description": "O nome e local onde a imagem gerada será salva."
+    },
+    {
+        "argument": "-p, --prompt",
+        "default_value": null,
+        "name": "Prompt (Comando)",
+        "description": "O texto descrevendo o que você quer que a IA desenhe."
+    },
+    {
+        "argument": "-n, --negative-prompt",
+        "default_value": "\"\"",
+        "name": "Prompt Negativo",
+        "description": "O que você NÃO quer na imagem (ex: 'feio', 'mãos extras', 'texto')."
+    },
+    {
+        "argument": "--preview-path",
+        "default_value": "./preview.png",
+        "name": "Caminho da Prévia",
+        "description": "Onde salvar a imagem temporária enquanto a geração não termina."
+    },
+    {
+        "argument": "--upscale-model",
+        "default_value": null,
+        "name": "Modelo de Upscale",
+        "description": "Caminho para um modelo (ESRGAN) que aumenta a resolução da imagem final."
+    },
+    {
+        "argument": "-t, --threads",
+        "default_value": -1,
+        "name": "Threads da CPU",
+        "description": "Quantos núcleos do processador usar. -1 usa todos. Importante para velocidade se não usar placa de vídeo."
+    },
+    {
+        "argument": "--upscale-repeats",
+        "default_value": 1,
+        "name": "Repetições de Upscale",
+        "description": "Quantas vezes aplicar o aumento de resolução (cuidado, pode criar artefatos)."
+    },
+    {
+        "argument": "--upscale-tile-size",
+        "default_value": 0,
+        "name": "Tamanho do Bloco (Upscale)",
+        "description": "Divide a imagem durante o upscale para economizar memória RAM/VRAM. Essencial para imagens grandes."
+    },
+    {
+        "argument": "-H, --height",
+        "default_value": 512,
+        "name": "Altura",
+        "description": "Altura da imagem em pixels."
+    },
+    {
+        "argument": "-W, --width",
+        "default_value": 512,
+        "name": "Largura",
+        "description": "Largura da imagem em pixels."
+    },
+    {
+        "argument": "--steps",
+        "default_value": 20,
+        "name": "Passos (Steps)",
+        "description": "Quantidade de vezes que a IA vai 'refinar' a imagem. Mais passos = mais detalhes (até certo ponto), mas mais demorado."
+    },
+    {
+        "argument": "--high-noise-steps",
+        "default_value": -1,
+        "name": "Passos de Alto Ruído",
+        "description": "Quantos passos usar no modelo inicial (Refiner) antes de passar para o modelo final."
+    },
+    {
+        "argument": "--clip-skip",
+        "default_value": -1,
+        "name": "Pular Camadas do CLIP",
+        "description": "Ignora as últimas camadas de processamento de texto. Anime geralmente usa 2. Realismo usa 1 (nenhuma ignorada)."
+    },
+    {
+        "argument": "-b, --batch-count",
+        "default_value": null,
+        "name": "Contagem de Lote",
+        "description": "Quantas imagens gerar em sequência com o mesmo comando."
+    },
+    {
+        "argument": "--chroma-t5-mask-pad",
+        "default_value": null,
+        "name": "Preenchimento de Máscara T5",
+        "description": "Técnico: Ajuste de memória para o modelo Chroma."
+    },
+    {
+        "argument": "--video-frames",
+        "default_value": 1,
+        "name": "Quadros de Vídeo",
+        "description": "Quantos quadros (frames) gerar se estiver criando um vídeo."
+    },
+    {
+        "argument": "--fps",
+        "default_value": 24,
+        "name": "FPS",
+        "description": "Quadros por segundo (velocidade de reprodução do vídeo gerado)."
+    },
+    {
+        "argument": "--timestep-shift",
+        "default_value": 0,
+        "name": "Deslocamento de Tempo",
+        "description": "Ajuste fino para modelos 'Nitro'. Altera como a IA percebe o progresso da geração."
+    },
+    {
+        "argument": "--preview-interval",
+        "default_value": 1,
+        "name": "Intervalo de Prévia",
+        "description": "A cada quantos passos a imagem de prévia deve ser atualizada na tela."
+    },
+    {
+        "argument": "--cfg-scale",
+        "default_value": 7.0,
+        "name": "Escala CFG (Obediência)",
+        "description": "O quanto a IA deve obedecer seu prompt. Alto (>10) força demais e distorce. Baixo (<4) a IA fica criativa demais e ignora você."
+    },
+    {
+        "argument": "--img-cfg-scale",
+        "default_value": "igual ao cfg-scale",
+        "name": "CFG da Imagem",
+        "description": "Igual ao acima, mas específico para quanto a IA deve obedecer a imagem de entrada (em edições)."
+    },
+    {
+        "argument": "--guidance",
+        "default_value": 3.5,
+        "name": "Escala de Orientação",
+        "description": "Similar ao CFG, mas usado em modelos destilados (como Flux ou SD3 Turbo). Valores baixos funcionam melhor aqui."
+    },
+    {
+        "argument": "--slg-scale",
+        "default_value": 0,
+        "name": "Skip Layer Guidance",
+        "description": "Técnica para melhorar a qualidade ignorando certas camadas. Útil para SD3.5 Medium (tente 2.5)."
+    },
+    {
+        "argument": "--skip-layer-start",
+        "default_value": 0.01,
+        "name": "Início do SLG",
+        "description": "Em que momento da geração começar a aplicar o SLG."
+    },
+    {
+        "argument": "--skip-layer-end",
+        "default_value": 0.2,
+        "name": "Fim do SLG",
+        "description": "Em que momento parar de aplicar o SLG."
+    },
+    {
+        "argument": "--eta",
+        "default_value": 0,
+        "name": "ETA (Ruído)",
+        "description": "Controla a variedade do ruído durante a amostragem. Afeta a diversidade das imagens."
+    },
+    {
+        "argument": "--high-noise-cfg-scale",
+        "default_value": 7.0,
+        "name": "CFG de Alto Ruído",
+        "description": "A 'obediência' aplicada apenas no começo da geração (modelo Refiner)."
+    },
+    {
+        "argument": "--high-noise-img-cfg-scale",
+        "default_value": "igual ao cfg-scale",
+        "name": "CFG de Imagem (Alto Ruído)",
+        "description": "Obediência à imagem de entrada durante a fase inicial."
+    },
+    {
+        "argument": "--high-noise-guidance",
+        "default_value": 3.5,
+        "name": "Orientação de Alto Ruído",
+        "description": "Guidance específico para a fase inicial da geração."
+    },
+    {
+        "argument": "--high-noise-slg-scale",
+        "default_value": 0,
+        "name": "SLG de Alto Ruído",
+        "description": "Skip Layer Guidance para a fase inicial."
+    },
+    {
+        "argument": "--high-noise-skip-layer-start",
+        "default_value": 0.01,
+        "name": "Início SLG (Alto Ruído)",
+        "description": "Ponto de partida do SLG na fase inicial."
+    },
+    {
+        "argument": "--high-noise-skip-layer-end",
+        "default_value": 0.2,
+        "name": "Fim SLG (Alto Ruído)",
+        "description": "Ponto de parada do SLG na fase inicial."
+    },
+    {
+        "argument": "--high-noise-eta",
+        "default_value": 0,
+        "name": "ETA (Alto Ruído)",
+        "description": "Controle de diversidade para a fase inicial."
+    },
+    {
+        "argument": "--strength",
+        "default_value": 0.75,
+        "name": "Força (Denoising Strength)",
+        "description": "Crucial para img2img. Define o quanto a imagem original será alterada. 0.1 muda pouco, 1.0 muda tudo."
+    },
+    {
+        "argument": "--pm-style-strength",
+        "default_value": null,
+        "name": "Força de Estilo PhotoMaker",
+        "description": "Quanto do 'estilo' das fotos de referência deve ser aplicado."
+    },
+    {
+        "argument": "--control-strength",
+        "default_value": 0.9,
+        "name": "Força do ControlNet",
+        "description": "O quanto a IA deve respeitar o ControlNet. 1.0 segue estritamente a pose/contorno."
+    },
+    {
+        "argument": "--moe-boundary",
+        "default_value": 0.875,
+        "name": "Fronteira MoE (Wan2.2)",
+        "description": "Ponto de troca entre especialistas no modelo Wan2.2 (avançado)."
+    },
+    {
+        "argument": "--flow-shift",
+        "default_value": "auto",
+        "name": "Deslocamento de Fluxo",
+        "description": "Ajuste matemático para modelos baseados em 'Flow Matching' (como SD3 e Flux). Melhora o contraste/detalhe."
+    },
+    {
+        "argument": "--vace-strength",
+        "default_value": null,
+        "name": "Força VACE (Wan)",
+        "description": "Parâmetro específico para controle de vídeo no modelo Wan."
+    },
+    {
+        "argument": "--vae-tile-overlap",
+        "default_value": 0.5,
+        "name": "Sobreposição de Blocos VAE",
+        "description": "Evita que apareçam linhas de corte na imagem quando a decodificação é feita em pedaços para economizar memória."
+    },
+    {
+        "argument": "--vae-tiling",
+        "default_value": false,
+        "name": "Processamento VAE em Blocos",
+        "description": "Processa a imagem final em pedacinhos. Economiza MUITA memória, mas é um pouco mais lento."
+    },
+    {
+        "argument": "--force-sdxl-vae-conv-scale",
+        "default_value": false,
+        "name": "Forçar Escala Conv SDXL",
+        "description": "Correção técnica para alguns VAEs do SDXL que não funcionam corretamente."
+    },
+    {
+        "argument": "--offload-to-cpu",
+        "default_value": false,
+        "name": "Descarregar para CPU",
+        "description": "Salva VRAM movendo pesos para a RAM do sistema. Essencial para GPUs com pouca memória (menos de 8GB)."
+    },
+    {
+        "argument": "--control-net-cpu",
+        "default_value": false,
+        "name": "ControlNet na CPU",
+        "description": "Roda o ControlNet no processador para deixar a placa de vídeo livre para o modelo principal."
+    },
+    {
+        "argument": "--clip-on-cpu",
+        "default_value": false,
+        "name": "CLIP na CPU",
+        "description": "Processa o texto na CPU. Economiza memória de vídeo."
+    },
+    {
+        "argument": "--vae-on-cpu",
+        "default_value": false,
+        "name": "VAE na CPU",
+        "description": "Processa a imagem final na CPU. É lento, mas evita erros de 'Out of Memory' no final da geração."
+    },
+    {
+        "argument": "--diffusion-fa",
+        "default_value": false,
+        "name": "Flash Attention",
+        "description": "Técnica de otimização que torna a geração mais rápida e gasta menos memória (requer hardware compatível)."
+    },
+    {
+        "argument": "--diffusion-conv-direct",
+        "default_value": false,
+        "name": "Convolução Direta (Difusão)",
+        "description": "Otimização de velocidade para certos tipos de processadores/placas."
+    },
+    {
+        "argument": "--vae-conv-direct",
+        "default_value": false,
+        "name": "Convolução Direta (VAE)",
+        "description": "Otimização de velocidade para o VAE."
+    },
+    {
+        "argument": "--canny",
+        "default_value": false,
+        "name": "Pré-processador Canny",
+        "description": "Detecta bordas na imagem de entrada automaticamente (usado com ControlNet)."
+    },
+    {
+        "argument": "-v, --verbose",
+        "default_value": false,
+        "name": "Modo Verboso",
+        "description": "Mostra MUITOS detalhes técnicos na tela preta enquanto gera. Útil para descobrir erros."
+    },
+    {
+        "argument": "--color",
+        "default_value": false,
+        "name": "Logs Coloridos",
+        "description": "Deixa o texto do terminal colorido para facilitar a leitura."
+    },
+    {
+        "argument": "--chroma-disable-dit-mask",
+        "default_value": false,
+        "name": "Desativar Máscara DiT (Chroma)",
+        "description": "Técnico: Configuração específica para o modelo Chroma."
+    },
+    {
+        "argument": "--chroma-enable-t5-mask",
+        "default_value": false,
+        "name": "Ativar Máscara T5 (Chroma)",
+        "description": "Técnico: Configuração específica para o modelo Chroma."
+    },
+    {
+        "argument": "--increase-ref-index",
+        "default_value": false,
+        "name": "Incrementar Índice de Ref",
+        "description": "Ajuste automático para quando você usa múltiplas imagens de referência."
+    },
+    {
+        "argument": "--disable-auto-resize-ref-image",
+        "default_value": false,
+        "name": "Desativar Redimensionamento Auto",
+        "description": "Impede que o programa mude o tamanho da sua imagem de referência automaticamente."
+    },
+    {
+        "argument": "--taesd-preview-only",
+        "default_value": false,
+        "name": "Apenas Prévia TAESD",
+        "description": "Não gera a imagem final de alta qualidade, apenas a prévia rápida."
+    },
+    {
+        "argument": "--preview-noisy",
+        "default_value": false,
+        "name": "Prévia com Ruído",
+        "description": "Mostra a imagem cheia de chiado diminuindo, em vez da imagem ficando nítida. Curiosidade técnica."
+    },
+    {
+        "argument": "-M, --mode",
+        "default_value": "img_gen",
+        "name": "Modo de Execução",
+        "description": "Escolhe o que fazer: 'img_gen' (criar imagem), 'vid_gen' (vídeo), 'upscale' (melhorar qualidade) ou 'convert' (converter modelo)."
+    },
+    {
+        "argument": "--type",
+        "default_value": "arquivo original",
+        "name": "Tipo de Peso (Quantização)",
+        "description": "Força o modelo a rodar em uma precisão menor (ex: q4_0) para economizar memória, mesmo se o arquivo for pesado (f16)."
+    },
+    {
+        "argument": "--rng",
+        "default_value": "cuda/cpu",
+        "name": "Gerador de Números (RNG)",
+        "description": "Algoritmo que gera a aleatoriedade. Muda levemente o resultado final."
+    },
+    {
+        "argument": "--sampler-rng",
+        "default_value": null,
+        "name": "RNG do Amostrador",
+        "description": "Gerador aleatório específico para o processo de amostragem."
+    },
+    {
+        "argument": "-s, --seed",
+        "default_value": 42,
+        "name": "Semente (Seed)",
+        "description": "O DNA da imagem. Se você usar o mesmo Seed e o mesmo Prompt, a imagem será idêntica. -1 gera uma aleatória."
+    },
+    {
+        "argument": "--sampling-method",
+        "default_value": "euler / euler_a",
+        "name": "Método de Amostragem",
+        "description": "O algoritmo que desenha a imagem. 'Euler a' é rápido e variável. 'DPM++' é preciso. 'LCM' é ultra rápido (mas requer modelos específicos)."
+    },
+    {
+        "argument": "--prediction",
+        "default_value": null,
+        "name": "Tipo de Predição",
+        "description": "Técnico: Substitui como o modelo prevê o ruído. Geralmente detectado automaticamente."
+    },
+    {
+        "argument": "--lora-apply-mode",
+        "default_value": "auto",
+        "name": "Modo de Aplicação de LoRA",
+        "description": "Define se o LoRA é fundido ao modelo antes de começar (rápido) ou aplicado durante a geração (economiza RAM)."
+    },
+    {
+        "argument": "--scheduler",
+        "default_value": "discrete",
+        "name": "Agendador (Scheduler)",
+        "description": "Controla a velocidade com que o ruído é removido. 'Karras' geralmente melhora a qualidade final."
+    },
+    {
+        "argument": "--skip-layers",
+        "default_value": "[7,8,9]",
+        "name": "Pular Camadas (SLG)",
+        "description": "Define quais camadas exatas serão ignoradas se o SLG estiver ativado."
+    },
+    {
+        "argument": "--high-noise-sampling-method",
+        "default_value": "padrao",
+        "name": "Amostrador de Alto Ruído",
+        "description": "Método de desenho usado apenas na fase inicial da geração."
+    },
+    {
+        "argument": "--high-noise-skip-layers",
+        "default_value": "[7,8,9]",
+        "name": "Pular Camadas (Alto Ruído)",
+        "description": "Camadas ignoradas pelo SLG na fase inicial."
+    },
+    {
+        "argument": "-r, --ref-image",
+        "default_value": null,
+        "name": "Imagem de Referência (Flux)",
+        "description": "Específico para modelos Flux Kontext, permite usar imagens como contexto."
+    },
+    {
+        "argument": "-h, --help",
+        "default_value": null,
+        "name": "Ajuda",
+        "description": "Mostra essa lista de comandos."
+    },
+    {
+        "argument": "--vae-tile-size",
+        "default_value": "32x32",
+        "name": "Tamanho do Bloco VAE",
+        "description": "Tamanho dos pedacinhos que o VAE vai processar. Menor = Menos memória usada, mas mais lento."
+    },
+    {
+        "argument": "--vae-relative-tile-size",
+        "default_value": null,
+        "name": "Tamanho Relativo VAE",
+        "description": "Define o tamanho do bloco como uma fração da imagem total."
+    },
+    {
+        "argument": "--preview",
+        "default_value": "none",
+        "name": "Método de Prévia",
+        "description": "Como mostrar o progresso. 'tae' é rápido e feio, 'vae' é lento e bonito, 'none' é desligado."
+    },
+    {
+        "argument": "--convert-name",
+        "default_value": false,
+        "name": "Converter Nomes",
+        "description": "Usado no modo de conversão para ajustar nomes de tensores."
+    },
+    {
+        "argument": "--version",
+        "default_value": false,
+        "name": "Versão",
+        "description": "Mostra a versão do programa."
+    },
+    {
+        "argument": "--cache-mode",
+        "default_value": "none",
+        "name": "Modo de Cache",
+        "description": "Ativa o sistema de cache para acelerar a inferência. Use 'ucache' para modelos UNET e 'easycache' ou 'cache-dit' para modelos DiT."
+    },
+    {
+        "argument": "--cache-option",
+        "default_value": null,
+        "name": "Opções de Cache",
+        "description": "Define parâmetros específicos como limiar de erro (threshold) e decaimento. Exemplo: 'threshold=1.5,reset=1'."
+    },
+    {
+        "argument": "--cache-preset",
+        "default_value": "fast",
+        "name": "Preset de Cache",
+        "description": "Predefinição para o modo 'cache-dit'. Opções: slow, medium, fast, ultra."
+    },
+    {
+        "argument": "--tae",
+        "default_value": null,
+        "name": "Modelo TAE (Tiny AutoEncoder)",
+        "description": "Versão otimizada do decodificador para economizar VRAM. Essencial para modelos Wan2.1 e Qwen-Image em GPUs menores."
+    },
+    {
+        "argument": "--scm-policy",
+        "default_value": "dynamic",
+        "name": "Política SCM",
+        "description": "Define como a máscara de computação de passos se comporta (Dynamic ou Static)."
+    },
+    {
+        "argument": "--scm-mask",
+        "default_value": null,
+        "name": "Máscara SCM",
+        "description": "Máscara manual de bits definindo quais passos calcular (1) e quais usar cache (0)."
+    },
+    {
+        "argument": "--sigmas",
+        "default_value": null,
+        "name": "Sigmas Personalizados",
+        "description": "Lista de valores sigma manuais para o sampler (ex: '14.61,7.8,3.5,0.0'). Substitui o agendamento padrão."
+    }
+]

@@ -1,0 +1,636 @@
+[
+    {
+        "name": "Steps",
+        "flag": "--steps",
+        "desc": "Number of iterations for image generation (Default: 20).",
+        "type": "Integer",
+        "default": 20,
+        "required": false,
+        "key": "cmd.steps"
+    },
+    {
+        "name": "CFG Scale (Guidance Scale)",
+        "flag": "--cfg-scale",
+        "desc": "How much the AI should adhere to the prompt. (SD Default: 7.0, Flux/Schnell: 1.0).",
+        "type": "Float",
+        "default": 7.0,
+        "required": false,
+        "key": "cmd.cfg-scale"
+    },
+    {
+        "name": "Guidance (Flux/SD3)",
+        "flag": "--guidance",
+        "desc": "Similar to CFG for distilled models like Flux. Low values (2.0 - 4.0) are better.",
+        "type": "Float",
+        "default": 3.5,
+        "required": false,
+        "key": "cmd.guidance"
+    },
+    {
+        "name": "Sampling Method",
+        "flag": "--sampling-method",
+        "desc": "Sampling algorithm.",
+        "type": "Enum",
+        "default": "euler_a",
+        "required": false,
+        "options": [
+            "euler",
+            "euler_a",
+            "heun",
+            "dpm2",
+            "dpm++2s_a",
+            "dpm++2m",
+            "dpm++2mv2",
+            "ipndm",
+            "ipndm_v",
+            "lcm",
+            "ddim_trailing",
+            "tcd"
+        ],
+        "key": "cmd.sampling-method"
+    },
+    {
+        "name": "Scheduler",
+        "flag": "--scheduler",
+        "desc": "Controls the noise curve.",
+        "type": "Enum",
+        "default": "discrete",
+        "required": false,
+        "options": [
+            "discrete",
+            "karras",
+            "exponential",
+            "ays",
+            "gits",
+            "kl_optimal",
+            "simple",
+            "lcm"
+        ],
+        "key": "cmd.scheduler"
+    },
+    {
+        "name": "Seed",
+        "flag": "--seed",
+        "desc": "Base number for generation. -1 for random.",
+        "type": "Integer",
+        "default": -1,
+        "required": false,
+        "key": "cmd.seed"
+    },
+    {
+        "name": "Width",
+        "flag": "-W",
+        "desc": "Image width in pixels.",
+        "type": "Integer",
+        "default": 512,
+        "required": false,
+        "key": "cmd.W"
+    },
+    {
+        "name": "Height",
+        "flag": "-H",
+        "desc": "Image height in pixels.",
+        "type": "Integer",
+        "default": 512,
+        "required": false,
+        "key": "cmd.H"
+    },
+    {
+        "name": "Batch Count",
+        "flag": "-b",
+        "desc": "How many images to generate in a sequence.",
+        "type": "Integer",
+        "default": 1,
+        "required": false,
+        "key": "cmd.b"
+    },
+    {
+        "name": "Negative Prompt",
+        "flag": "-n",
+        "desc": "Elements to exclude from the image.",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "key": "cmd.n"
+    },
+    {
+        "name": "Prompt",
+        "flag": "-p",
+        "desc": "Text prompt to guide image generation.",
+        "type": "String",
+        "default": "",
+        "required": true,
+        "key": "cmd.prompt"
+    },
+    {
+        "name": "Init Img",
+        "flag": "--init-img",
+        "desc": "Path to the initial image (img2img).",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "open_mode": "file_open",
+        "open_types": [
+            [
+                "Images",
+                "*.png *.jpg"
+            ]
+        ],
+        "key": "cmd.init-img"
+    },
+    {
+        "name": "LoRA Model Dir",
+        "flag": "--lora-model-dir",
+        "desc": "Directory to load LoRA models.",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "open_mode": "directory",
+        "key": "cmd.lora-model-dir"
+    },
+    {
+        "name": "Preview Path",
+        "flag": "--preview-path",
+        "desc": "Caminho para salvar a imagem de pré-visualização.",
+        "type": "String",
+        "default": "",
+        "required": false
+    },
+    {
+        "name": "Embedding Dir",
+        "flag": "--embd-dir",
+        "desc": "Directory to load embeddings.",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "open_mode": "directory",
+        "key": "cmd.embd-dir"
+    },
+    {
+        "name": "Clip Skip",
+        "flag": "--clip-skip",
+        "desc": "Skips final CLIP layers. (SD1.5: 1, Anime/Pony: 2).",
+        "type": "Integer",
+        "default": -1,
+        "required": false,
+        "key": "cmd.clip-skip"
+    },
+    {
+        "name": "Flow Shift (Flux/SD3/Wan)",
+        "flag": "--flow-shift",
+        "desc": "Contrast/detail adjustment for Flow Matching models (Default ~3.0 for Wan).",
+        "type": "Float",
+        "default": 3.0,
+        "required": false,
+        "key": "cmd.flow-shift"
+    },
+    {
+        "name": "Img2Img Strength",
+        "flag": "--strength",
+        "desc": "Denoising Img2Img strength. 0.0 keeps the original image, 1.0 changes everything.",
+        "type": "Float",
+        "default": 0.75,
+        "required": false,
+        "key": "cmd.strength"
+    },
+    {
+        "name": "CPU Threads (-t)",
+        "flag": "--threads",
+        "desc": "Number of CPU cores to use (-1 = all).",
+        "type": "Integer",
+        "default": -1,
+        "required": false,
+        "key": "cmd.threads"
+    },
+    {
+        "name": "Flash Attention",
+        "flag": "--diffusion-fa",
+        "desc": "Enables Flash Attention memory optimization (requires compatible GPU).",
+        "type": "Flag",
+        "default": false,
+        "required": false,
+        "key": "cmd.diffusion-fa"
+    },
+    {
+        "name": "Offload to CPU",
+        "flag": "--offload-to-cpu",
+        "desc": "Moves weights to RAM. Saves VRAM but is slower.",
+        "type": "Flag",
+        "default": false,
+        "required": false,
+        "key": "cmd.offload-to-cpu"
+    },
+    {
+        "name": "VAE Tiling",
+        "flag": "--vae-tiling",
+        "desc": "Processes the VAE in chunks. Essential for generating 1024x1024 on 4GB-6GB GPUs.",
+        "type": "Flag",
+        "default": false,
+        "required": false,
+        "key": "cmd.vae-tiling"
+    },
+    {
+        "name": "VAE on CPU",
+        "flag": "--vae-on-cpu",
+        "desc": "Keeps the VAE in system RAM instead of VRAM.",
+        "type": "Flag",
+        "default": false,
+        "required": false,
+        "key": "cmd.vae-on-cpu"
+    },
+    {
+        "name": "Clip on CPU",
+        "flag": "--clip-on-cpu",
+        "desc": "Processes the text encoder on the CPU (Saves VRAM for Flux/SDXL).",
+        "type": "Flag",
+        "default": false,
+        "required": false,
+        "key": "cmd.clip-on-cpu"
+    },
+    {
+        "name": "Quantization (Type)",
+        "flag": "--type",
+        "desc": "Forces lower precision during loading.",
+        "type": "Enum",
+        "default": "auto",
+        "required": false,
+        "options": [
+            "auto",
+            "q2_K",
+            "q3_K",
+            "q4_K",
+            "q5_K",
+            "q6_K",
+            "q8_K",
+            "q4_0",
+            "q4_1",
+            "q5_0",
+            "q5_1",
+            "q8_0",
+            "f16",
+            "bf16",
+            "f32"
+        ],
+        "key": "cmd.type"
+    },
+    {
+        "name": "RNG Type",
+        "flag": "--rng",
+        "desc": "Random number generator.",
+        "type": "Enum",
+        "default": "cuda",
+        "required": false,
+        "options": [
+            "cuda",
+            "std_default"
+        ],
+        "key": "cmd.rng"
+    },
+    {
+        "name": "Upscale Model",
+        "flag": "--upscale-model",
+        "desc": "Path to ESRGAN model (e.g., RealESRGAN_x4plus_anime_6B.pth).",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "open_mode": "file_open",
+        "open_types": [
+            [
+                "Upscale Models",
+                "*.pth *.bin"
+            ]
+        ],
+        "key": "cmd.upscale-model"
+    },
+    {
+        "name": "Upscale Repeats",
+        "flag": "--upscale-repeats",
+        "desc": "How many times to apply the upscale.",
+        "type": "Integer",
+        "default": 1,
+        "required": false,
+        "key": "cmd.upscale-repeats"
+    },
+    {
+        "name": "Upscale Tile Size",
+        "flag": "--upscale-tile-size",
+        "desc": "Upscale processing block size (0 = auto). Use 256 or 512 to save memory.",
+        "type": "Integer",
+        "default": 0,
+        "required": false,
+        "key": "cmd.upscale-tile-size"
+    },
+    {
+        "name": "ControlNet Model",
+        "flag": "--control-net",
+        "desc": "Path to the ControlNet model.",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "open_mode": "file_open",
+        "open_types": [
+            [
+                "ControlNet",
+                "*.safetensors *.gguf *.bin"
+            ]
+        ],
+        "key": "cmd.control-net"
+    },
+    {
+        "name": "ControlNet Image",
+        "flag": "--control-image",
+        "desc": "Path to the guide image for ControlNet.",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "open_mode": "file_open",
+        "open_types": [
+            [
+                "Images",
+                "*.png *.jpg"
+            ]
+        ],
+        "key": "cmd.control-image"
+    },
+    {
+        "name": "ControlNet Strength",
+        "flag": "--control-strength",
+        "desc": "ControlNet intensity (0.0 to 1.0).",
+        "type": "Float",
+        "default": 0.9,
+        "required": false,
+        "key": "cmd.control-strength"
+    },
+    {
+        "name": "Canny Preprocessor",
+        "flag": "--canny",
+        "desc": "Applies Canny edge filter to the control image.",
+        "type": "Flag",
+        "default": false,
+        "required": false,
+        "key": "cmd.canny"
+    },
+    {
+        "name": "Video Frames (Wan)",
+        "flag": "--video-frames",
+        "desc": "Number of frames for video generation (e.g., 16, 24, 33).",
+        "type": "Integer",
+        "default": 16,
+        "required": false,
+        "key": "cmd.video-frames"
+    },
+    {
+        "name": "Video FPS",
+        "flag": "--fps",
+        "desc": "Frames per second in the output video.",
+        "type": "Integer",
+        "default": 6,
+        "required": false,
+        "key": "cmd.fps"
+    },
+    {
+        "name": "VAE Path",
+        "flag": "--vae",
+        "desc": "Path to external VAE file.",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "open_mode": "file_open",
+        "open_types": [
+            [
+                "VAE Model",
+                "*.safetensors *.pt *.bin"
+            ]
+        ],
+        "key": "cmd.vae"
+    },
+    {
+        "name": "CLIP_L Path",
+        "flag": "--clip_l",
+        "desc": "Path to CLIP_L (SDXL/Flux/SD3).",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "open_mode": "file_open",
+        "open_types": [
+            [
+                "CLIP Model",
+                "*.safetensors *.gguf *.bin"
+            ]
+        ],
+        "key": "cmd.clip_l"
+    },
+    {
+        "name": "CLIP_G Path",
+        "flag": "--clip_g",
+        "desc": "Path to CLIP_G (SDXL/SD3).",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "open_mode": "file_open",
+        "open_types": [
+            [
+                "CLIP Model",
+                "*.safetensors *.gguf *.bin"
+            ]
+        ],
+        "key": "cmd.clip_g"
+    },
+    {
+        "name": "T5XXL Path",
+        "flag": "--t5xxl",
+        "desc": "Path to T5 text encoder (Flux/SD3).",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "open_mode": "file_open",
+        "open_types": [
+            [
+                "T5 Model",
+                "*.safetensors *.gguf *.bin"
+            ]
+        ],
+        "key": "cmd.t5xxl"
+    },
+    {
+        "name": "PhotoMaker Path",
+        "flag": "--photo-maker",
+        "desc": "Path to PhotoMaker model (FaceID).",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "open_mode": "file_open",
+        "open_types": [
+            [
+                "PhotoMaker",
+                "*.bin *.safetensors"
+            ]
+        ],
+        "key": "cmd.photo-maker"
+    },
+    {
+        "name": "PhotoMaker Style Strength",
+        "flag": "--pm-style-strength",
+        "desc": "PhotoMaker style strength (10-20 recommended).",
+        "type": "Float",
+        "default": 20.0,
+        "required": false,
+        "key": "cmd.pm-style-strength"
+    },
+    {
+        "name": "PhotoMaker ID Images Dir",
+        "flag": "--pm-id-images-dir",
+        "desc": "Directory containing reference photos for PhotoMaker.",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "open_mode": "directory",
+        "key": "cmd.pm-id-images-dir"
+    },
+    {
+        "name": "Verbose (-v)",
+        "flag": "-v",
+        "desc": "Shows detailed logs in the console (Debug).",
+        "type": "Flag",
+        "default": false,
+        "required": false,
+        "key": "cmd.v"
+    },
+    {
+        "name": "Preview Method",
+        "flag": "--preview",
+        "desc": "Live preview method during generation.",
+        "type": "Enum",
+        "default": "none",
+        "required": false,
+        "options": [
+            "none",
+            "proj",
+            "tae",
+            "vae"
+        ],
+        "key": "cmd.preview"
+    },
+    {
+        "name": "TAESD Model",
+        "flag": "--taesd",
+        "desc": "Path to the TAESD model (fast preview).",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "open_mode": "file_open",
+        "open_types": [
+            [
+                "TAESD Model",
+                "*.safetensors *.pth *.bin"
+            ]
+        ],
+        "key": "cmd.taesd"
+    },
+    {
+        "name": "TAESD Preview Only",
+        "flag": "--taesd-preview-only",
+        "desc": "Generates only the fast preview, without the final image.",
+        "type": "Flag",
+        "default": false,
+        "required": false,
+        "key": "cmd.taesd-preview-only"
+    },
+    {
+        "name": "Preview Noisy",
+        "flag": "--preview-noisy",
+        "desc": "Shows the noise being removed instead of the decoded image.",
+        "type": "Flag",
+        "default": false,
+        "required": false,
+        "key": "cmd.preview-noisy"
+    },
+    {
+        "name": "Preview Interval",
+        "flag": "--preview-interval",
+        "desc": "Updates the preview every N steps.",
+        "type": "Integer",
+        "default": 1,
+        "required": false,
+        "key": "cmd.preview-interval"
+    },
+    {
+        "name": "Cache Preset (DiT)",
+        "flag": "--cache-preset",
+        "desc": "Speed presets for cache-dit.",
+        "type": "Enum",
+        "default": "fast",
+        "required": false,
+        "options": [
+            "slow",
+            "medium",
+            "fast",
+            "ultra"
+        ],
+        "key": "cmd.cache-preset"
+    },
+    {
+        "name": "TAE Path (Wan/Qwen)",
+        "flag": "--tae",
+        "desc": "Tiny AutoEncoder to save VRAM on Wan/Qwen models.",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "open_mode": "file_open",
+        "open_types": [
+            [
+                "TAE Model",
+                "*.safetensors *.pt"
+            ]
+        ],
+        "key": "cmd.tae"
+    },
+    {
+        "name": "Cache Mode",
+        "flag": "--cache-mode",
+        "desc": "Acceleration method. UCache (SD1.5/SDXL) or EasyCache/DBCache (Flux/DiT).",
+        "type": "Enum",
+        "default": "none",
+        "required": false,
+        "options": [
+            "none",
+            "ucache",
+            "easycache",
+            "dbcache",
+            "taylorseer",
+            "cache-dit"
+        ],
+        "key": "cmd.cache-mode"
+    },
+    {
+        "name": "Cache Options",
+        "flag": "--cache-option",
+        "desc": "Fine-tune cache configuration (e.g., 'threshold=1.5,reset=0').",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "key": "cmd.cache-option"
+    },
+    {
+        "name": "SCM Policy",
+        "flag": "--scm-policy",
+        "desc": "Steps Computation Mask policy (DiT). Dynamic checks threshold, Static always uses cache.",
+        "type": "Enum",
+        "default": "dynamic",
+        "required": false,
+        "options": [
+            "dynamic",
+            "static"
+        ],
+        "key": "cmd.scm-policy"
+    },
+    {
+        "name": "Custom Sigmas",
+        "flag": "--sigmas",
+        "desc": "Manual noise (sigma) values separated by commas.",
+        "type": "String",
+        "default": "",
+        "required": false,
+        "key": "cmd.sigmas"
+    }
+]

@@ -1,0 +1,132 @@
+{
+  "categories": {
+    "sampling": [
+      "--steps",
+      "-s",
+      "--seed",
+      "--cfg-scale",
+      "--guidance",
+      "--flow-shift",
+      "--sampling-method",
+      "--scheduler",
+      "--sigmas"
+    ],
+    "dimensions": [
+      "-W",
+      "-H",
+      "-b",
+      "--batch-count",
+      "-c"
+    ],
+    "performance": [
+      "--threads",
+      "-t",
+      "--gpu-layers",
+      "-ngl",
+      "--diffusion-fa",
+      "--offload-to-cpu",
+      "--vae-tiling",
+      "--vae-on-cpu",
+      "--clip-on-cpu",
+      "--type",
+      "--rng",
+      "--cache-mode",
+      "--cache-option",
+      "--cache-preset",
+      "--scm-policy"
+    ],
+    "aux_models": [
+      "--vae",
+      "--clip_l",
+      "--clip_g",
+      "--t5xxl",
+      "--clip-skip",
+      "--taesd",
+      "--tae"
+    ],
+    "controlnet": [
+      "--control-net",
+      "--control-image",
+      "--control-strength",
+      "--canny"
+    ],
+    "upscale": [
+      "--upscale-model",
+      "--upscale-repeats",
+      "--upscale-tile-size",
+      "--video-frames",
+      "--fps",
+      "--photo-maker",
+      "--pm-style-strength",
+      "--pm-id-images-dir"
+    ],
+    "output": [
+      "-v",
+      "--verbose",
+      "--color",
+      "--preview",
+      "--preview-path",
+      "--preview-interval",
+      "--preview-noisy",
+      "--taesd-preview-only"
+    ]
+  },
+  "defaults": [
+    "--steps",
+    "--cfg-scale",
+    "--seed",
+    "-W",
+    "-H",
+    "-n",
+    "-b",
+    "--sampling-method"
+  ],
+  "ignored": [
+    "-m",
+    "--model",
+    "-p",
+    "--prompt",
+    "-n",
+    "--negative-prompt",
+    "-i",
+    "--init-img",
+    "--strength",
+    "--lora-model-dir",
+    "--embd-dir",
+    "-o",
+    "--preview-path"
+  ],
+  "icons": {
+    "general": "🏠",
+    "img2img": "🖼️",
+    "lora": "🔗",
+    "embedding": "🧩",
+    "system": "⚙️",
+    "sampling": "🎲",
+    "dimensions": "📏",
+    "performance": "📈",
+    "aux_models": "📦",
+    "controlnet": "🎯",
+    "upscale": "🎬",
+    "output": "💬",
+    "others": "🔧",
+    "queue": "⏳",
+    "theme": "🎨"
+  },
+  "i18n_keys": {
+    "general": "cat.general",
+    "img2img": "cat.img2img",
+    "lora": "cat.lora",
+    "embedding": "cat.embedding",
+    "system": "cat.system",
+    "sampling": "cat.sampling",
+    "dimensions": "cat.dimensions",
+    "performance": "cat.performance",
+    "aux_models": "cat.aux_models",
+    "controlnet": "cat.controlnet",
+    "upscale": "cat.upscale",
+    "output": "cat.output",
+    "others": "cat.others",
+    "queue": "cat.queue"
+  }
+}
