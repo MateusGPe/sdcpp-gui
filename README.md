@@ -82,11 +82,12 @@ class MyCustomPlugin(IPlugin):
 1. Clone the repository.
 2. Install dependencies (ensure you have a Python environment ready):
    ```bash
-   pip install -r requirements.txt
+   poetry shell
+   poetry install
    ```
 3. Run the application:
    ```bash
-   python -m sd_cpp_gui.main
+   scg
    ```
 
 ## License
