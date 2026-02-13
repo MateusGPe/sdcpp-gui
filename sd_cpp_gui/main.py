@@ -1,7 +1,27 @@
 """
 Entry point for the application.
 """
-
+# -----------------------------------------------------------------------------
+# NUITKA CONFIGURATION
+# -----------------------------------------------------------------------------
+# nuitka-project: --output-filename=scg
+# nuitka-project: --onefile
+# nuitka-project: --standalone
+# nuitka-project: --enable-plugin=tk-inter
+# nuitka-project: --include-package=sd_cpp_gui.plugins.core_embedding
+# nuitka-project: --include-package=sd_cpp_gui.plugins.core_img2img
+# nuitka-project: --include-package=sd_cpp_gui.plugins.core_lora
+# nuitka-project: --include-package=sd_cpp_gui.plugins.core_networks
+# nuitka-project: --include-package=sd_cpp_gui.plugins.core_preview
+# nuitka-project: --include-package=sd_cpp_gui.plugins.core_queue
+# nuitka-project: --include-package=sd_cpp_gui.plugins.core_remote
+# nuitka-project: --include-package=sd_cpp_gui.plugins.core_txt2img
+# nuitka-project: --include-package=sd_cpp_gui.plugins.shared_ui
+# nuitka-project: --include-package-data=ttkbootstrap
+# nuitka-project: --include-data-dir=./data=data
+# nuitka-project-if: {OS} == "Windows":
+#     nuitka-project: --windows-disable-console
+# -----------------------------------------------------------------------------
 from PIL import Image
 
 import sd_cpp_gui.ui.components.nine_slices as nine_slices

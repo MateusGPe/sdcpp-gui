@@ -243,3 +243,4 @@ tools/**/*.json
 *.parquet
 data/*.db-wal
 data/*.db-shm
+main.dist/*
