@@ -5,6 +5,8 @@ Coordinates the GUI View, Business Logic, and State Management.
 
 from __future__ import annotations
 
+import os
+import sys
 import tkinter as tk
 from logging import Logger
 from types import SimpleNamespace
@@ -125,6 +127,20 @@ class AppCoordinator(ttk.Window):
         self.side_color = ttk.Style.get_instance().theme.type
         self.preview: PreviewPanel
         self.title(i18n.get("app.title"))
+        try:
+            icon_path = "icon.png"  # For running from source
+            if "APPDIR" in os.environ:
+                # We are in an AppImage. The icon is at the root of the AppDir.
+                # The build script uses APP_NAME="scg".
+                icon_path = os.path.join(os.environ["APPDIR"], "scg.png")
+
+            if os.path.exists(icon_path):
+                icon = tk.PhotoImage(file=icon_path)
+                self.iconphoto(True, icon)
+            else:
+                logger.warning(f"Application icon not found at '{icon_path}'.")
+        except Exception as e:
+            logger.warning(f"Could not load application icon: {e}")
         self._init_ui()
         self._setup_subscribers()
         self._load_persistent_settings()

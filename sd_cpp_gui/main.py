@@ -5,7 +5,6 @@ Entry point for the application.
 # NUITKA CONFIGURATION
 # -----------------------------------------------------------------------------
 # nuitka-project: --output-filename=scg
-# nuitka-project: --onefile
 # nuitka-project: --standalone
 # nuitka-project: --enable-plugin=tk-inter
 # nuitka-project: --include-package=sd_cpp_gui.plugins.core_embedding
